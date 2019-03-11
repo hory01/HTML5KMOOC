@@ -1,0 +1,15 @@
+<mat-toolbar color="secondary">
+  <mat-toolbar-row>
+      <span><h1>Strategy Game 2k19</h1></span>
+      <span class="fill-space"></span>
+      <span class="button">
+        <button mat-button class="menuButton" [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)='this.showHero()'>Heroes</button>
+          <button mat-menu-item (click)='this.showSpecies()'>Species</button>
+        </mat-menu>
+      </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<app-heroes *ngIf="this.isHero"></app-heroes>
+<app-species *ngIf="this.isSpecies"></app-species>
