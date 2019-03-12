@@ -18,10 +18,9 @@ import {
   MatSelectModule,
   MatSortModule,
   MatTableModule,
-  MatPaginator,
   MatPaginatorModule,
   MatSidenavModule,
-  MatSidenavContainer,
+  MatCheckboxModule
 } from '@angular/material';
 import { MenuComponent } from './menu/menu.component';
 import { SpeciesComponent } from './species/species.component';
@@ -61,7 +60,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTableModule,
     MatPaginatorModule,
     MatSidenavModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
