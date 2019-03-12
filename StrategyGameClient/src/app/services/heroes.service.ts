@@ -32,15 +32,14 @@ export class HeroesService {
 
   async getHeroes(){
     var data = '?start=0&count=0&orderfield=id&orderdirection=ASC';
-    var res = await this.httpClient.get<Hero[]>(this.apiUrl+data,this.httpGetOptions);
-    return res;
+    return await this.httpClient.get<Hero[]>(this.apiUrl+data,this.httpGetOptions);
   }
 
   async createHero(h : Hero){
     let body = new HttpParams()
       .set('name', h.name)
       .set('desc', h.description);
-      // var res = await
+
       return await this.httpClient.post(this.apiUrl, body, this.httpPostOptions);
   }
 
@@ -49,7 +48,7 @@ export class HeroesService {
       .set('id', h.id.toString())
       .set('name', h.name)
       .set('desc', h.description);
-    var res = await this.httpClient.put(this.apiUrl+h.id, body,this.httpPostOptions);
-    return res;
+    
+    return await this.httpClient.put(this.apiUrl + h.id, body, this.httpPostOptions);
   }
 }

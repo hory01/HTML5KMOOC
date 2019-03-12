@@ -24,20 +24,29 @@ export class SpeciesService {
   constructor(private httpClient: HttpClient) {
   }
 
-  deleteSpecies(id:number){
-    this.httpClient.delete(this.apiUrl+id,this.httpDeleteOptions).subscribe()
+  async deleteSpecies(id:number){
+    return await this.httpClient.delete(this.apiUrl+id,this.httpDeleteOptions);
   }
 
-  getSpecies(){ 
+  async getSpecies(){ 
     var data = '?start=0&count=0&orderfield=id&orderdirection=ASC';
-    return this.httpClient.get<Species[]>(this.apiUrl+data,this.httpGetOptions); 
+    return await this.httpClient.get<Species[]>(this.apiUrl+data,this.httpGetOptions); 
   }
 
-  createSpecies(s : Species){
+  async createSpecies(s : Species){
     let body = new HttpParams()
       .set('name', s.name)
       .set('desc', s.description);
 
-    return this.httpClient.post(this.apiUrl, body, this.httpPostOptions).subscribe();
+    return this.httpClient.post(this.apiUrl, body, this.httpPostOptions);
+  }
+
+  async modSpecies(s : Species){
+    let body = new HttpParams()
+    .set('id', s.id.toString())
+    .set('name', s.name)
+    .set('desc', s.description);
+
+    return await this.httpClient.put(this.apiUrl + s.id, body, this.httpPostOptions);
   }
 }
