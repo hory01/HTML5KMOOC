@@ -34,11 +34,19 @@ export class HeroesComponent implements OnInit {
     );
   }
 
-  async deleteHero(){
+  deleteHero(){
     this.hs.deleteHero(this.hero.id);
+    this.dataSource = new MatTableDataSource<Hero>();
+    this.getHeroes();
   }
   
   createHero(){
     this.hs.createHero(this.hero);
-  } 
+    this.dataSource = new MatTableDataSource<Hero>();
+    this.getHeroes();
+  }
+
+  modHero(){
+    this.hs.modHero(this.hero);
+  }
 }

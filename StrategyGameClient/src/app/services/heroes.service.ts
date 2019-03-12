@@ -41,4 +41,13 @@ export class HeroesService {
 
     return this.httpClient.post(this.apiUrl, body, this.httpPostOptions).subscribe();
   }
+
+  modHero(h : Hero){
+    let body = new HttpParams()
+      .set('id', h.id.toString())
+      .set('name', h.name)
+      .set('desc', h.description);
+
+    this.httpClient.put(this.apiUrl+h.id, body,this.httpPostOptions).subscribe();
+  }
 }
