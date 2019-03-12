@@ -22,14 +22,12 @@ import {
   MatSidenavModule,
   MatCheckboxModule
 } from '@angular/material';
-import { MenuComponent } from './menu/menu.component';
 import { SpeciesComponent } from './species/species.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    MenuComponent,
     SpeciesComponent
   ],
   imports: [

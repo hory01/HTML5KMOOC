@@ -54,7 +54,7 @@ export class SpeciesComponent implements OnInit {
       });
   }
 
-  async modHero() {
+  async modSpecies() {
     var res = await this.ss.modSpecies(this.spec);
     await res.subscribe(
       async () => {

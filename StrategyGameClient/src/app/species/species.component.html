@@ -1,43 +1,58 @@
-<form class="createspeciesfrom">
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Species name" [(ngModel)]="spec.name" name="name" #name="ngModel">
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Species description" [(ngModel)]="spec.description" name="description" #name="ngModel" >
-  </mat-form-field>
-  <button mat-button color="primary" (click)="createSpecies()">Create!</button>
+<form class="specform mat-elevation-z8">
+  <div class="container" fxLayout="row">
+    <div fxFlex="33%" class="create">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Species name" [(ngModel)]="spec.name" name="name" #name="ngModel">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Species description" [(ngModel)]="spec.description" name="description"
+          #name="ngModel">
+      </mat-form-field>
+      <button mat-button class="createButton" color="primary" (click)="createSpecies()">Create!</button>
+    </div>
+    <div fxFlex="33%" class="mod">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Species ID" [(ngModel)]="spec.id" name="id" #name="ngModel">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Species Name" [(ngModel)]="spec.name" name="name" #name="ngModel">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Species Description" [(ngModel)]="spec.description" name="description"
+          #name="ngModel">
+      </mat-form-field>
+      <button mat-button class="modButton" (click)="modSpecies()">Modify!</button>
+    </div>
+    <div fxFlex="33%" class="delete">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Species ID" [(ngModel)]="spec.id" name="id" #name="ngModel">
+      </mat-form-field>
+      <button mat-button class="deleteButton" (click)="deleteSpecies()">Delete!</button>
+    </div>
+  </div>
 </form>
-<div class="container mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let data"> {{data.id}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let data"> {{data.name}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let data"> {{data.description}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+<div class="container speciesTable mat-elevation-z8">
+  <div fxFlex="25%"></div>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell style="width: 100px" *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let data"> {{data.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell style="width: 150px" *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let data"> {{data.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let data"> {{data.description}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>
-  <mat-paginator 
-    [pageSizeOptions]="[10, 20, 50]"
-    [length]="species.length"
-    [pageIndex]="0"
-    [pageSize]="10"
-    showFirstLastButtons>
-  </mat-paginator>
-<form class="delspeciesfrom">
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Species ID" [(ngModel)]="spec.id" name="id" #name="ngModel">
-    </mat-form-field>
-    <button mat-button color="primary" (click)="deleteSpecies()">Delete!</button>
-</form>
+<mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 20, 50]" [length]="species.length" [pageIndex]="0" [pageSize]="10"
+  showFirstLastButtons>
+</mat-paginator>
