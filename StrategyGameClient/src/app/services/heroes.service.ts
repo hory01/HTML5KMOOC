@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Hero } from '../models/hero';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class HeroesService {
   private apiUrl = 'http://81.2.241.234:8080/hero/';
   private httpGetOptions = {
-    headers: new HttpHeaders({ 
+    headers: new HttpHeaders({
       'Content-Type':  'application/x-www-form-urlencoded; charset=utf-8'
     })
   };
@@ -20,34 +21,35 @@ export class HeroesService {
     headers: new HttpHeaders({
       'Content-Type':  "application/json"
     })
-  } 
+  }
 
   constructor(private httpClient: HttpClient) {
   }
 
-  deleteHero(id:number){
-    this.httpClient.delete(this.apiUrl+id,this.httpDeleteOptions).subscribe()
+  async deleteHero(id:number){
+    return await this.httpClient.delete(this.apiUrl+id,this.httpDeleteOptions);
   }
 
-  getHeroes(){ 
+  async getHeroes(){
     var data = '?start=0&count=0&orderfield=id&orderdirection=ASC';
-    return this.httpClient.get<Hero[]>(this.apiUrl+data,this.httpGetOptions)
+    var res = await this.httpClient.get<Hero[]>(this.apiUrl+data,this.httpGetOptions);
+    return res;
   }
 
-  createHero(h : Hero){
+  async createHero(h : Hero){
     let body = new HttpParams()
       .set('name', h.name)
       .set('desc', h.description);
-
-    return this.httpClient.post(this.apiUrl, body, this.httpPostOptions).subscribe();
+      // var res = await
+      return await this.httpClient.post(this.apiUrl, body, this.httpPostOptions);
   }
 
-  modHero(h : Hero){
+  async modHero(h : Hero){
     let body = new HttpParams()
       .set('id', h.id.toString())
       .set('name', h.name)
       .set('desc', h.description);
-
-    this.httpClient.put(this.apiUrl+h.id, body,this.httpPostOptions).subscribe();
+    var res = await this.httpClient.put(this.apiUrl+h.id, body,this.httpPostOptions);
+    return res;
   }
 }
