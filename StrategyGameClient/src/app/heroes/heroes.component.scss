@@ -1,5 +1,6 @@
 .heroform {
   color: bisque;
+  margin: 25px;
 }
 
 .createButton {
@@ -16,6 +17,9 @@
   height: 400px;
   overflow: auto;
   background-color: rgb(66, 66, 66);
+}
+
+.heroTable{
   margin: 25px;
 }
 
@@ -51,9 +55,13 @@ table {
   font-weight: bolder;
 }
 
+mat-paginator {
+  margin: 25px;
+}
+
 /* width */
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
 }
 
 /* Track */
